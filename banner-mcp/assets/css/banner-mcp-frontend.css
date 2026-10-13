@@ -1,0 +1,126 @@
+/**
+ * Estilos del banner de anuncio — Banner MCP
+ *
+ * La barra se fija en la parte superior de la ventana del navegador (position: fixed)
+ * y permanece visible mientras el usuario hace scroll. El padding-top que se añade
+ * al <body> mediante banner-mcp-active evita que el banner tape el contenido.
+ *
+ * Variables CSS personalizadas:
+ *  --banner-mcp-height:     Altura de la barra (usada también por el inline style de body).
+ *  --banner-mcp-bg:         Color de fondo del banner.
+ *  --banner-mcp-color:      Color del texto.
+ *  --banner-mcp-font-size:  Tamaño de fuente del mensaje.
+ *  --banner-mcp-padding:    Espacio vertical interior de la barra.
+ *
+ * @package BannerMcp
+ * @since   1.0.0
+ */
+
+/* ─── Variables ──────────────────────────────────────────────────────────── */
+
+:root {
+	--banner-mcp-height:    44px;
+	--banner-mcp-bg:        #1d2327;
+	--banner-mcp-color:     #f0f0f0;
+	--banner-mcp-font-size: 0.9rem;
+	--banner-mcp-padding:   0.6rem 1rem;
+	--banner-mcp-z-index:   99999;
+}
+
+/* ─── Barra principal ─────────────────────────────────────────────────────── */
+
+.banner-mcp {
+	position:       fixed;
+	top:            0;
+	left:           0;
+	right:          0;
+	z-index:        var(--banner-mcp-z-index);
+	background:     var(--banner-mcp-bg);
+	color:          var(--banner-mcp-color);
+	min-height:     var(--banner-mcp-height);
+	display:        flex;
+	align-items:    center;
+	justify-content: center;
+	box-shadow:     0 2px 6px rgba(0, 0, 0, 0.25);
+	box-sizing:     border-box;
+}
+
+/* Contenedor interior con ancho máximo para sitios con layout centrado */
+.banner-mcp__inner {
+	width:      100%;
+	max-width:  1200px;
+	padding:    var(--banner-mcp-padding);
+	box-sizing: border-box;
+	text-align: center;
+}
+
+/* Párrafo del mensaje */
+.banner-mcp__text {
+	margin:      0;
+	padding:     0;
+	font-size:   var(--banner-mcp-font-size);
+	font-weight: 500;
+	line-height: 1.4;
+	color:       var(--banner-mcp-color);
+}
+
+/* ─── Ajuste del body ─────────────────────────────────────────────────────── */
+
+/*
+ * La clase se aplica al <body> desde PHP (add_body_class) o desde el script JS
+ * de fallback. Desplaza el contenido hacia abajo para que no quede oculto
+ * bajo el banner fijo. El valor debe coincidir con --banner-mcp-height.
+ */
+body.banner-mcp-active {
+	padding-top: var(--banner-mcp-height, 44px) !important;
+}
+
+/*
+ * Corrección para temas que usan una cabecera fija (sticky/fixed).
+ * Si la cabecera del tema también está fija, necesita desplazarse hacia abajo
+ * el mismo valor. Se puede sobreescribir con un CSS personalizado en el tema.
+ *
+ * Ejemplo de sobreescritura en el tema:
+ *   body.banner-mcp-active .site-header { top: var(--banner-mcp-height); }
+ */
+
+/* ─── Compatibilidad con la barra de administración de WordPress ─────────── */
+
+/*
+ * Cuando el usuario está logueado y la barra de administración (admin bar)
+ * está visible, esta tiene z-index 99999. Nos aseguramos de que el banner
+ * aparezca debajo de la admin bar en entornos de desarrollo/staging para
+ * no interferir con la interfaz de administración.
+ */
+.admin-bar .banner-mcp {
+	top: 32px; /* Altura estándar de la admin bar en escritorio */
+}
+
+@media screen and (max-width: 782px) {
+	.admin-bar .banner-mcp {
+		top: 46px; /* Altura de la admin bar en móvil */
+	}
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 600px) {
+	:root {
+		--banner-mcp-font-size: 0.8rem;
+		--banner-mcp-padding:   0.5rem 0.75rem;
+	}
+
+	.banner-mcp {
+		/* En pantallas pequeñas la altura puede crecer si el texto ocupa dos líneas */
+		min-height: var(--banner-mcp-height);
+		height:     auto;
+	}
+}
+
+/* ─── Accesibilidad: reducir movimiento ──────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+	.banner-mcp {
+		transition: none;
+	}
+}

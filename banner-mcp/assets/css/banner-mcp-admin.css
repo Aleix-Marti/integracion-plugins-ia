@@ -1,0 +1,48 @@
+/**
+ * Estilos de la página de ajustes del administrador — Banner MCP
+ *
+ * @package BannerMcp
+ * @since   1.0.0
+ */
+
+/* ─── Introducción ─────────────────────────────────────────────────────── */
+
+.banner-mcp-admin-intro {
+	max-width: 720px;
+	margin-bottom: 1.5rem;
+}
+
+.banner-mcp-admin-intro p {
+	color: #50575e;
+}
+
+.banner-mcp-admin-intro .notice.inline {
+	display:      block;
+	margin-top:   0.75rem;
+	padding:      0.6rem 0.9rem;
+	border-radius: 3px;
+}
+
+/* ─── Tabla de habilidades MCP ──────────────────────────────────────────── */
+
+.banner-mcp-mcp-info {
+	max-width: 720px;
+	margin-top: 1.5rem;
+}
+
+.banner-mcp-mcp-info h2 {
+	font-size: 1.1rem;
+	margin-bottom: 0.5rem;
+}
+
+.banner-mcp-mcp-info .widefat td,
+.banner-mcp-mcp-info .widefat th {
+	padding: 8px 12px;
+}
+
+.banner-mcp-mcp-info code {
+	font-size: 0.85rem;
+	background: #f0f0f1;
+	padding: 2px 5px;
+	border-radius: 3px;
+}

@@ -1,0 +1,163 @@
+/* Estilos aislados del widget para evitar interferencias con el tema activo. */
+.iac-chat {
+	--iac-chat-color: #4f46e5;
+	position: fixed;
+	z-index: 99999;
+	bottom: 24px;
+}
+
+.iac-chat[data-position="right"] {
+	right: 24px;
+}
+
+.iac-chat[data-position="left"] {
+	left: 24px;
+}
+
+.iac-chat-toggle {
+	display: grid;
+	width: 58px;
+	height: 58px;
+	padding: 16px;
+	place-items: center;
+	border: 0;
+	border-radius: 50%;
+	background: var(--iac-chat-color);
+	color: #fff;
+	box-shadow: 0 4px 16px rgb(0 0 0 / 22%);
+	cursor: pointer;
+}
+
+.iac-chat-toggle svg {
+	width: 26px;
+	height: 26px;
+	fill: currentColor;
+}
+
+.iac-chat-panel {
+	display: flex;
+	position: absolute;
+	right: 0;
+	bottom: 72px;
+	flex-direction: column;
+	width: min(360px, calc(100vw - 32px));
+	height: min(480px, calc(100vh - 120px));
+	overflow: hidden;
+	border: 1px solid #dedee4;
+	border-radius: 14px;
+	background: #fff;
+	box-shadow: 0 8px 32px rgb(0 0 0 / 18%);
+	color: #202124;
+	font: 15px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.iac-chat[data-position="left"] .iac-chat-panel {
+	right: auto;
+	left: 0;
+}
+
+.iac-chat-panel[hidden] {
+	display: none;
+}
+
+.iac-chat-header {
+	display: flex;
+	min-height: 52px;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 14px;
+	background: var(--iac-chat-color);
+	color: #fff;
+}
+
+.iac-chat-close {
+	border: 0;
+	background: transparent;
+	color: inherit;
+	font-size: 26px;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.iac-chat-messages {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 10px;
+	padding: 14px;
+	overflow-y: auto;
+}
+
+.iac-chat-message {
+	max-width: 88%;
+	padding: 9px 12px;
+	border-radius: 12px;
+	background: #f0f0f4;
+	overflow-wrap: anywhere;
+	white-space: pre-wrap;
+}
+
+.iac-chat-message--user {
+	align-self: flex-end;
+	background: var(--iac-chat-color);
+	color: #fff;
+}
+
+.iac-chat-message--waiting {
+	color: #60636a;
+	font-style: italic;
+}
+
+.iac-chat-message--error {
+	background: #fff0f0;
+	color: #9b1c1c;
+}
+
+.iac-chat-form {
+	display: flex;
+	align-items: flex-end;
+	gap: 8px;
+	padding: 10px;
+	border-top: 1px solid #e6e6ea;
+}
+
+.iac-chat-form textarea {
+	flex: 1;
+	min-width: 0;
+	max-height: 100px;
+	padding: 8px;
+	border: 1px solid #c8c8ce;
+	border-radius: 8px;
+	font: inherit;
+	resize: vertical;
+}
+
+.iac-chat-form button {
+	padding: 9px 12px;
+	border: 0;
+	border-radius: 8px;
+	background: var(--iac-chat-color);
+	color: #fff;
+	font: inherit;
+	cursor: pointer;
+}
+
+.iac-chat button:focus-visible,
+.iac-chat textarea:focus-visible {
+	outline: 3px solid #111;
+	outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+	.iac-chat {
+		bottom: 16px;
+	}
+
+	.iac-chat[data-position="right"] {
+		right: 16px;
+	}
+
+	.iac-chat[data-position="left"] {
+		left: 16px;
+	}
+}
